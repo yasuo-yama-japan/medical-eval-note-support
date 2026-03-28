@@ -1,0 +1,234 @@
+<!--
+Medical Evaluation Note Privacy Policy
+Version: v1.0.0
+使い方:
+1. このまま privacy.html として保存
+2. your@email.com を問い合わせ先メールに置換
+3. 実際のアプリ仕様に合わせて必要部分だけ調整
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>医療評価Note プライバシーポリシー</title>
+    <meta name="description" content="医療評価Note のプライバシーポリシーです。" />
+    <style>
+        :root {
+            --bg: #f5f8fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --subtext: #4b5563;
+            --line: #dbe4ee;
+            --accent: #1e5fa8;
+            --accent-soft: #e8f1fb;
+            --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            --radius: 16px;
+            --max: 900px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(180deg, #eef5fc 0%, #f5f8fb 100%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-inner {
+            padding: 52px 0 28px;
+        }
+
+        .brand {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.2;
+        }
+
+        .lead {
+            margin: 0;
+            color: var(--subtext);
+        }
+
+        .section {
+            padding: 24px 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        p, li {
+            color: var(--text);
+        }
+
+        .muted {
+            color: var(--subtext);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .footer {
+            padding: 8px 0 42px;
+            color: var(--subtext);
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container hero-inner">
+            <div class="brand">Medical Evaluation Note</div>
+            <h1>医療評価Note プライバシーポリシー</h1>
+            <p class="lead">
+                医療評価Note における利用者情報の取り扱いについて説明します。
+            </p>
+            <a class="back-link" href="./">← サポートページへ戻る</a>
+        </div>
+    </header>
+
+    <main class="container section">
+        <section class="card">
+            <h2>1. 基本方針</h2>
+            <p>
+                医療評価Note（以下、「本アプリ」）は、利用者のプライバシーを尊重し、
+                個人情報および利用情報の適切な取り扱いと保護に努めます。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>2. 取得する情報</h2>
+            <p>本アプリでは、提供する機能の範囲内で、以下の情報を取り扱う場合があります。</p>
+            <ul>
+                <li>利用者が入力した評価記録、コメント、患者関連情報</li>
+                <li>問い合わせ時に利用者が送信した氏名、メールアドレス、問い合わせ内容</li>
+                <li>不具合調査のために任意で提供された端末情報、OSバージョン、アプリバージョン</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>3. 利用目的</h2>
+            <ul>
+                <li>本アプリの機能提供のため</li>
+                <li>問い合わせ対応のため</li>
+                <li>不具合調査および品質改善のため</li>
+                <li>今後の機能改善や運用改善の参考のため</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>4. 情報の保存について</h2>
+            <p>
+                本アプリで入力された情報は、アプリの仕様に応じて利用者の端末内、
+                または利用者が選択した保存先に保存される場合があります。
+            </p>
+            <p>
+                クラウド同期や外部送信を行う機能がある場合は、その機能の利用状況に応じて
+                保存先や送信先が変わることがあります。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>5. 第三者提供</h2>
+            <p>
+                法令に基づく場合を除き、利用者の同意なく個人情報を第三者に提供することはありません。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>6. 外部サービス</h2>
+            <p>
+                本アプリまたはサポートページでは、問い合わせ対応やページ提供のために、
+                GitHub Pages や Google Forms などの外部サービスを利用する場合があります。
+            </p>
+            <p class="muted">
+                実際に利用する外部サービスがある場合は、運用内容に合わせてこの記載を調整してください。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>7. 安全管理</h2>
+            <p>
+                本アプリは、取り扱う情報の漏えい、滅失、毀損などを防止するため、
+                合理的な範囲で安全管理措置を講じます。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>8. 改定</h2>
+            <p>
+                本ポリシーの内容は、必要に応じて変更することがあります。
+                重要な変更がある場合は、適切な方法で周知します。
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>9. お問い合わせ</h2>
+            <p>
+                本ポリシーに関するお問い合わせは、以下までご連絡ください。
+            </p>
+            <p>
+                メール: <a href="mailto:your@email.com">your@email.com</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="container footer">
+        <div>最終更新日: 2026-03-28</div>
+    </footer>
+</body>
+</html>
