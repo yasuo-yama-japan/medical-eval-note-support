@@ -1,0 +1,469 @@
+<!--
+Medical Evaluation Note Support Page
+Version: v1.0.0
+変更点:
+- GitHub Pages にそのまま置ける単一ファイル版
+- サポートページ / 問い合わせ導線 / FAQ / プライバシーポリシー導線を統合
+- index.html としてそのまま保存して公開可能
+使い方:
+1. このまま index.html として保存
+2. YOUR_FORM_URL を Google Forms のURLに置換
+3. your@email.com を問い合わせ先メールに置換
+4. privacy.html を別途作成して同じ階層に配置
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>医療評価Note サポート</title>
+    <meta name="description" content="医療評価Note のサポートページです。使い方、よくある質問、お問い合わせ先、プライバシーポリシーへの導線を掲載しています。" />
+    <style>
+        :root {
+            --bg: #f5f8fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --subtext: #4b5563;
+            --line: #dbe4ee;
+            --accent: #1e5fa8;
+            --accent-strong: #174a82;
+            --accent-soft: #e8f1fb;
+            --ok: #0f766e;
+            --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            --radius: 16px;
+            --max: 980px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(180deg, #eef5fc 0%, #f5f8fb 100%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-inner {
+            padding: 56px 0 36px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(30px, 4vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .lead {
+            margin: 0;
+            max-width: 760px;
+            color: var(--subtext);
+            font-size: 17px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .button:hover {
+            background: var(--accent-strong);
+            border-color: var(--accent-strong);
+            text-decoration: none;
+        }
+
+        .button.secondary {
+            background: #ffffff;
+            color: var(--accent);
+            border-color: var(--line);
+            box-shadow: none;
+        }
+
+        .button.secondary:hover {
+            background: #f8fbff;
+        }
+
+        .section {
+            padding: 26px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            grid-column: span 12;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .muted {
+            color: var(--subtext);
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: #f3f7fb;
+            border: 1px solid var(--line);
+            color: var(--subtext);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-list,
+        .plain-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .info-list li,
+        .plain-list li {
+            margin: 8px 0;
+        }
+
+        .contact-box {
+            background: #f8fbff;
+            border: 1px solid #d7e7fa;
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .faq-item {
+            border-top: 1px solid var(--line);
+            padding: 14px 0;
+        }
+
+        .faq-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .notice {
+            background: #f6fffb;
+            border: 1px solid #cdeee4;
+            color: var(--ok);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+
+        .footer {
+            padding: 18px 0 48px;
+            color: var(--subtext);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 800px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 801px) {
+            .span-7 {
+                grid-column: span 7;
+            }
+
+            .span-5 {
+                grid-column: span 5;
+            }
+
+            .span-6 {
+                grid-column: span 6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container hero-inner">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                <span>Medical Evaluation Note</span>
+            </div>
+
+            <h1>医療評価Note サポート</h1>
+            <p class="lead">
+                医療評価Note のサポートページです。アプリの概要、主な使い方、お問い合わせ先、
+                よくある質問、プライバシーポリシーへのリンクを掲載しています。
+            </p>
+
+            <div class="hero-actions">
+                <a class="button" href="YOUR_FORM_URL" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>
+                <a class="button secondary" href="privacy.html">プライバシーポリシー</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="grid">
+                <article class="card span-7">
+                    <h2>アプリ概要</h2>
+                    <p class="muted">
+                        医療評価Note は、リハビリ・看護・介護の現場で使う評価記録を、
+                        患者ごとに整理しやすくするためのアプリです。
+                        評価追加、未入力カード、基本情報3カード、候補チップ入力などに対応し、
+                        現場での継続的な記録と見返しやすさを重視しています。
+                    </p>
+
+                    <div class="badge-row">
+                        <span class="badge">評価作成</span>
+                        <span class="badge">基本情報3カード</span>
+                        <span class="badge">候補チップ入力</span>
+                        <span class="badge">未入力カード投入</span>
+                        <span class="badge">履歴管理</span>
+                    </div>
+                </article>
+
+                <aside class="card span-5">
+                    <h2>お問い合わせ</h2>
+                    <div class="contact-box">
+                        <p style="margin-top: 0;">
+                            不具合報告、ご質問、機能改善のご要望は、
+                            下記フォームまたはメールからご連絡ください。
+                        </p>
+
+                        <p style="margin-bottom: 8px;">
+                            <strong>フォーム:</strong><br />
+                            <a href="YOUR_FORM_URL" target="_blank" rel="noopener noreferrer">お問い合わせフォームを開く</a>
+                        </p>
+
+                        <p style="margin-bottom: 0;">
+                            <strong>メール:</strong><br />
+                            <a href="mailto:your@email.com">your@email.com</a>
+                        </p>
+
+                        <div class="notice">
+                            返信には数日かかる場合があります。内容確認のため、端末情報やアプリバージョンの記載をお願いします。
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <article class="card span-6">
+                    <h2>主な機能</h2>
+                    <ul class="info-list">
+                        <li>患者ごとの評価履歴の管理</li>
+                        <li>評価ランチャーからの評価追加</li>
+                        <li>パッケージ・個別評価・ユーザーテンプレート追加</li>
+                        <li>基本情報3カードの一括投入</li>
+                        <li>候補チップ入力による少ないタッチ操作</li>
+                        <li>未入力カードへの先送り管理</li>
+                    </ul>
+                </article>
+
+                <article class="card span-6">
+                    <h2>使い始めの流れ</h2>
+                    <ol class="plain-list">
+                        <li>患者を選択して評価作成画面を開きます。</li>
+                        <li>「評価を追加」から評価ランチャーを開きます。</li>
+                        <li>パッケージ、個別評価、ユーザーテンプレートから追加方法を選びます。</li>
+                        <li>必要に応じて「今すぐ評価」または「未入力カード投入」を選びます。</li>
+                        <li>基本情報カードでは候補入力UIを使って効率的に入力します。</li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <article class="card">
+                    <h2>よくある質問</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. このアプリは診断や治療を行うものですか？</div>
+                        <div class="muted">
+                            いいえ。本アプリは記録補助・評価整理を目的としたアプリです。
+                            診断や治療方針の決定そのものを行うものではありません。
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. 基本情報3カードとは何ですか？</div>
+                        <div class="muted">
+                            「基本情報（疾患・発症）」「基本情報（生活背景）」「基本情報（主訴・目標）」の
+                            3つをまとめて追加できる仕組みです。初回評価時の整理に向いています。
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. 候補チップ入力とは何ですか？</div>
+                        <div class="muted">
+                            よく使う語句や過去に使った候補をタップして入力できる補助UIです。
+                            最近使った候補、よく使う候補、さらに表示、検索、自由入力に対応しています。
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. 不具合を報告したい場合はどうすればよいですか？</div>
+                        <div class="muted">
+                            上部の「お問い合わせフォーム」からご連絡ください。
+                            可能であれば、端末機種、OSバージョン、アプリバージョン、発生手順を記載してください。
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. 個人情報の取り扱いはどこで確認できますか？</div>
+                        <div class="muted">
+                            このページ上部または下部にある「プライバシーポリシー」リンクから確認できます。
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <article class="card span-6">
+                    <h2>サポート時に送ってほしい情報</h2>
+                    <ul class="info-list">
+                        <li>ご利用端末名</li>
+                        <li>iOS / iPadOS のバージョン</li>
+                        <li>アプリバージョン</li>
+                        <li>不具合が起きた画面名</li>
+                        <li>発生手順</li>
+                        <li>期待した動作と実際の動作</li>
+                    </ul>
+                </article>
+
+                <article class="card span-6">
+                    <h2>運用ポリシー</h2>
+                    <p class="muted">
+                        本アプリは、医療・介護・リハビリの現場での記録補助と評価整理を目的として提供しています。
+                        法令や施設方針に従い、利用者自身の責任のもとで運用してください。
+                        実運用に際しては、必要に応じて匿名化やマスキング設定の利用を推奨します。
+                    </p>
+                    <p class="muted" style="margin-bottom: 0;">
+                        詳細な個人情報の取り扱いについては、プライバシーポリシーをご確認ください。
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container footer">
+        <div>© 2026 医療評価Note</div>
+        <div class="footer-links">
+            <a href="YOUR_FORM_URL" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="mailto:your@email.com">メールで問い合わせ</a>
+        </div>
+    </footer>
+</body>
+</html>
