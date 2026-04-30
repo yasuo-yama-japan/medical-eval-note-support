@@ -1,14 +1,17 @@
 <!--
-Medical Evaluation Note Support Page
-Version: v1.0.0
+MedicalEvaNote Support Page
+Version: v1.1.0 MVP
 変更点:
-- GitHub Pages にそのまま置ける単一ファイル版
-- サポートページ / 問い合わせ導線 / FAQ / プライバシーポリシー導線を統合
-- index.html としてそのまま保存して公開可能
+- MVP初回公開版の仕様に合わせて説明文を縮小
+- Standard / 課金 / AI / 予後予測 / 同期 / 施設共有 / 高度分析の記載を削除
+- アプリ名を MedicalEvaNote に統一
+- FAQをMVP版向けに差し替え
+- 端末内保存・診断/治療判断を行わない旨を明記
+- サンプルデータ、ライト/ダークモード対応を追加
 使い方:
 1. このまま index.html として保存
 2. YOUR_FORM_URL を Google Forms のURLに置換
-3. your@email.com を問い合わせ先メールに置換
+3. medicalevaluationnote@gmail.com を問い合わせ先メールとして使用
 4. privacy.html を別途作成して同じ階層に配置
 -->
 <!DOCTYPE html>
@@ -16,8 +19,8 @@ Version: v1.0.0
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>医療評価Note サポート</title>
-    <meta name="description" content="医療評価Note のサポートページです。使い方、よくある質問、お問い合わせ先、プライバシーポリシーへの導線を掲載しています。" />
+    <title>MedicalEvaNote サポート</title>
+    <meta name="description" content="MedicalEvaNote のサポートページです。アプリの概要、使い方、よくある質問、お問い合わせ先、プライバシーポリシーへの導線を掲載しています。" />
     <style>
         :root {
             --bg: #f5f8fb;
@@ -29,6 +32,9 @@ Version: v1.0.0
             --accent-strong: #174a82;
             --accent-soft: #e8f1fb;
             --ok: #0f766e;
+            --warning-bg: #fff8ed;
+            --warning-border: #f2d5a7;
+            --warning-text: #8a5a00;
             --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
             --radius: 16px;
             --max: 980px;
@@ -252,6 +258,16 @@ Version: v1.0.0
             margin-top: 14px;
         }
 
+        .warning {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: var(--warning-text);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+
         .footer {
             padding: 18px 0 48px;
             color: var(--subtext);
@@ -291,13 +307,13 @@ Version: v1.0.0
         <div class="container hero-inner">
             <div class="brand">
                 <span class="brand-dot"></span>
-                <span>Medical Evaluation Note</span>
+                <span>MedicalEvaNote</span>
             </div>
 
-            <h1>医療評価Note サポート</h1>
+            <h1>MedicalEvaNote サポート</h1>
             <p class="lead">
-                医療評価Note のサポートページです。アプリの概要、主な使い方、お問い合わせ先、
-                よくある質問、プライバシーポリシーへのリンクを掲載しています。
+                MedicalEvaNote のサポートページです。アプリの概要、基本的な使い方、
+                よくある質問、お問い合わせ先、プライバシーポリシーへのリンクを掲載しています。
             </p>
 
             <div class="hero-actions">
@@ -313,18 +329,22 @@ Version: v1.0.0
                 <article class="card span-7">
                     <h2>アプリ概要</h2>
                     <p class="muted">
-                        医療評価Note は、リハビリ・看護・介護の現場で使う評価記録を、
-                        患者ごとに整理しやすくするためのアプリです。
-                        評価追加、未入力カード、基本情報3カード、候補チップ入力などに対応し、
-                        現場での継続的な記録と見返しやすさを重視しています。
+                        MedicalEvaNote は、医療・リハビリ現場で使用する臨床評価を、
+                        患者ごとに整理して記録できるアプリです。
+                    </p>
+                    <p class="muted">
+                        患者登録、評価入力、保存、履歴確認をシンプルな操作で行えます。
+                        バイタル、ADL、歩行、バランス、意識・神経系の評価に対応し、
+                        日々の記録を見返しやすくすることを目的としています。
                     </p>
 
                     <div class="badge-row">
-                        <span class="badge">評価作成</span>
-                        <span class="badge">基本情報3カード</span>
-                        <span class="badge">候補チップ入力</span>
-                        <span class="badge">未入力カード投入</span>
-                        <span class="badge">履歴管理</span>
+                        <span class="badge">患者管理</span>
+                        <span class="badge">評価入力</span>
+                        <span class="badge">履歴確認</span>
+                        <span class="badge">フリー記載</span>
+                        <span class="badge">コメント</span>
+                        <span class="badge">ダークモード対応</span>
                     </div>
                 </article>
 
@@ -359,24 +379,58 @@ Version: v1.0.0
                 <article class="card span-6">
                     <h2>主な機能</h2>
                     <ul class="info-list">
-                        <li>患者ごとの評価履歴の管理</li>
-                        <li>評価ランチャーからの評価追加</li>
-                        <li>パッケージ・個別評価・ユーザーテンプレート追加</li>
-                        <li>基本情報3カードの一括投入</li>
-                        <li>候補チップ入力による少ないタッチ操作</li>
-                        <li>未入力カードへの先送り管理</li>
+                        <li>患者ごとの評価記録管理</li>
+                        <li>臨床評価の追加と入力</li>
+                        <li>評価結果の保存</li>
+                        <li>評価履歴の確認</li>
+                        <li>フリー記載、コメント入力</li>
+                        <li>サンプルデータの追加</li>
+                        <li>ライトモード / ダークモード対応</li>
                     </ul>
                 </article>
 
                 <article class="card span-6">
                     <h2>使い始めの流れ</h2>
                     <ol class="plain-list">
-                        <li>患者を選択して評価作成画面を開きます。</li>
-                        <li>「評価を追加」から評価ランチャーを開きます。</li>
-                        <li>パッケージ、個別評価、ユーザーテンプレートから追加方法を選びます。</li>
-                        <li>必要に応じて「今すぐ評価」または「未入力カード投入」を選びます。</li>
-                        <li>基本情報カードでは候補入力UIを使って効率的に入力します。</li>
+                        <li>患者を登録します。</li>
+                        <li>患者を選択して評価画面を開きます。</li>
+                        <li>「評価を追加」から必要な評価を選びます。</li>
+                        <li>評価結果を入力して保存します。</li>
+                        <li>保存した評価は履歴画面で確認できます。</li>
+                        <li>必要に応じて、フリー記載やコメントも追加できます。</li>
                     </ol>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <article class="card">
+                    <h2>対応している主な評価</h2>
+                    <p class="muted">
+                        MVP版では、以下の臨床評価や記録に対応しています。
+                    </p>
+                    <div class="badge-row">
+                        <span class="badge">Vital</span>
+                        <span class="badge">NRS</span>
+                        <span class="badge">mRS</span>
+                        <span class="badge">FAC</span>
+                        <span class="badge">10m歩行</span>
+                        <span class="badge">TUG</span>
+                        <span class="badge">FRT</span>
+                        <span class="badge">6分間歩行</span>
+                        <span class="badge">BI</span>
+                        <span class="badge">TCT</span>
+                        <span class="badge">JCS</span>
+                        <span class="badge">GCS</span>
+                        <span class="badge">NIHSS</span>
+                        <span class="badge">BBS</span>
+                        <span class="badge">フリー記載</span>
+                        <span class="badge">コメント</span>
+                    </div>
+                    <div class="warning">
+                        本アプリは記録補助・評価整理を目的としたアプリです。診断、自動医療判断、治療方針の決定、予後予測を行うものではありません。
+                    </div>
                 </article>
             </div>
         </section>
@@ -395,18 +449,26 @@ Version: v1.0.0
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-q">Q. 基本情報3カードとは何ですか？</div>
+                        <div class="faq-q">Q. どのような評価に対応していますか？</div>
                         <div class="muted">
-                            「基本情報（疾患・発症）」「基本情報（生活背景）」「基本情報（主訴・目標）」の
-                            3つをまとめて追加できる仕組みです。初回評価時の整理に向いています。
+                            MVP版では、Vital、NRS、mRS、FAC、10m歩行、TUG、FRT、6分間歩行、
+                            BI、TCT、JCS、GCS、NIHSS、BBS、フリー記載、コメントなどに対応しています。
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <div class="faq-q">Q. 候補チップ入力とは何ですか？</div>
+                        <div class="faq-q">Q. データはどこに保存されますか？</div>
                         <div class="muted">
-                            よく使う語句や過去に使った候補をタップして入力できる補助UIです。
-                            最近使った候補、よく使う候補、さらに表示、検索、自由入力に対応しています。
+                            初回MVP版では、入力したデータは端末内に保存されます。
+                            外部サーバーへの送信、クラウド同期、施設共有は行っていません。
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">Q. サンプルデータとは何ですか？</div>
+                        <div class="muted">
+                            アプリの操作確認のために追加できるデモ用データです。
+                            実在の患者情報ではありません。
                         </div>
                     </div>
 
@@ -414,7 +476,7 @@ Version: v1.0.0
                         <div class="faq-q">Q. 不具合を報告したい場合はどうすればよいですか？</div>
                         <div class="muted">
                             上部の「お問い合わせフォーム」からご連絡ください。
-                            可能であれば、端末機種、OSバージョン、アプリバージョン、発生手順を記載してください。
+                            可能であれば、端末機種、OSバージョン、アプリバージョン、発生手順をご記載ください。
                         </div>
                     </div>
 
@@ -439,6 +501,8 @@ Version: v1.0.0
                         <li>不具合が起きた画面名</li>
                         <li>発生手順</li>
                         <li>期待した動作と実際の動作</li>
+                        <li>再現するかどうか</li>
+                        <li>可能であればスクリーンショット</li>
                     </ul>
                 </article>
 
@@ -449,6 +513,14 @@ Version: v1.0.0
                         法令や施設方針に従い、利用者自身の責任のもとで運用してください。
                         実運用に際しては、必要に応じて匿名化やマスキング設定の利用を推奨します。
                     </p>
+                    <p class="muted">
+                        初回MVP版では、入力データは端末内で管理されます。
+                        外部サーバー送信、クラウド同期、施設共有は行いません。
+                    </p>
+                    <p class="muted">
+                        本アプリは、診断、自動医療判断、治療方針の決定、予後予測を行うものではありません。
+                        記録内容の解釈や臨床判断は、必ず専門職の責任において行ってください。
+                    </p>
                     <p class="muted" style="margin-bottom: 0;">
                         詳細な個人情報の取り扱いについては、プライバシーポリシーをご確認ください。
                     </p>
@@ -458,11 +530,11 @@ Version: v1.0.0
     </main>
 
     <footer class="container footer">
-        <div>© 2026 医療評価Note</div>
+        <div>© 2026 MedicalEvaNote</div>
         <div class="footer-links">
             <a href="YOUR_FORM_URL" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>
             <a href="privacy.html">プライバシーポリシー</a>
-            <a href="mailto:your@email.com">メールで問い合わせ</a>
+            <a href="mailto:medicalevaluationnote@gmail.com">メールで問い合わせ</a>
         </div>
     </footer>
 </body>
